@@ -6,7 +6,7 @@ import Router from "./routes/routes.js";
 import { v4 as uuid } from "uuid";
 const app = express();
 const host = "localhost";
-const port = 5000;
+const port = process.env.PORT || 5000;
 connectTomongo();
 app.use(cors());
 app.use(express.json()); //to accepet json data in resquest
