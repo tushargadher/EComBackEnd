@@ -15,3 +15,16 @@ export const addPaymentGateway = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+export const paymentCallback = async (req, res) => {
+  const paytmResponse = req.body;
+
+  if (paytmResponse.STATUS === "TXN_SUCCESS") {
+    return res.redirect(
+      `https://flipcartstore.netlify.app//order-success?orderId=${paytmResponse.ORDERID}`
+    );
+  } else {
+    return res.redirect(
+      `https://flipcartstore.netlify.app//order-failed?orderId=${paytmResponse.ORDERID}`
+    );
+  }
+};
